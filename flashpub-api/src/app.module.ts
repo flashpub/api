@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AuthGuard } from './auth.guard';
+import { AuthenticationService } from './authentication.service';
 import { FirestoreService } from './firestore.service';
 import { PubsController } from './pubs/pubs.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController, PubsController],
-  providers: [AppService, FirestoreService],
+  controllers: [PubsController],
+  providers: [FirestoreService, AuthenticationService, AuthGuard],
 })
 export class AppModule {}

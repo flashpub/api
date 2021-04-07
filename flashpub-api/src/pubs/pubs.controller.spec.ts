@@ -12,7 +12,9 @@ describe('PubsController', () => {
     controller = module.get<PubsController>(PubsController);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  describe('root', () => {
+    it('should be defined', () => {
+      expect(controller).toBeDefined();
+    });
   });
 });
