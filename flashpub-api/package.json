@@ -11,7 +11,7 @@
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "funcstart": "npm run shell",
-    "deploy": "firebase deploy --only functions",
+    "deploy": "firebase deploy --only functions:api",
     "logs": "firebase functions:log",
     "prebuild": "rimraf dist",
     "build": "nest build",
