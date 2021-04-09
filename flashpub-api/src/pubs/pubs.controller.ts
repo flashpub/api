@@ -2,14 +2,14 @@ import { Controller, Get, Param, Headers, UseGuards, NotFoundException } from '@
 import { AuthGuard } from 'src/auth.guard';
 import { FirestoreService } from '../firestore.service';
 
-@Controller('pubs')
+@Controller('v1/pubs')
 export class PubsController {
     constructor(private readonly firestoreService: FirestoreService) {
     }
 
     @UseGuards(AuthGuard)
     @Get(':pubId')
-    async getPub(@Param() params, @Headers() headers): Promise<any> {
+    async getPub(@Param() params): Promise<any> {
         
         const pub = await this.firestoreService.getPub(params.pubId);
 

@@ -26,7 +26,17 @@ export class FirestoreService {
         const pubRef = this.database.collection('pubs').doc(pubId);
 
         const pub = (await pubRef.get());
-        return pub.exists ? pub.data() : null;
+        return pub.exists ? this.removeUnneededProps(pub.data()) : null;
+    }
+
+    removeUnneededProps(data: Firestore.DocumentData): any {
+        if('bookmarkedBy' in data){
+            delete data.bookmarkedBy;
+        }
+
+        return data;
     }
 }
+
+
 
