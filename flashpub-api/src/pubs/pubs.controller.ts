@@ -20,4 +20,18 @@ export class PubsController {
 
         return pub;
     }
+
+    @UseGuards(AuthGuard)
+    @Get('forOrcId/:orcId')
+    async getPubsForAuthor(@Param() params): Promise<any> {
+        
+        const pubs = await this.firestoreService.getPubsForAuthor(params.orcId);
+
+        if(!pubs)
+        {
+            throw new NotFoundException();
+        }
+
+        return pubs;
+    }
 }
