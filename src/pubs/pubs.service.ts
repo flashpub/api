@@ -16,6 +16,13 @@ export class PubsService {
     return pub.exists ? this.removeUnneededProps(pub.data()) : null;
   }
 
+  async getPubsForAuthor(orcId: string): Promise<string[]> {
+    const pubsRef = this.firebaseService.Firestore().collection('pubs');
+    const pubs = await pubsRef.where('author.orcid', '==', orcId).get();
+
+    return pubs.docs.map((x) => x.data().id);
+  }
+
   removeUnneededProps(data: Firestore.DocumentData): any {
     if ('bookmarkedBy' in data) {
       delete data.bookmarkedBy;

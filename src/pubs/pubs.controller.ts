@@ -4,6 +4,7 @@ import {
   Req,
   UseGuards,
   NotFoundException,
+  Param,
 } from '@nestjs/common';
 import { Request } from 'express';
 
@@ -30,5 +31,13 @@ export class PubsController {
       if (!pub) throw new NotFoundException();
       return pub;
     }
+  }
+
+  @UseGuards(AppGuard)
+  @Get('forOrcId/:orcId')
+  async getPubsForAuthor(@Param() params): Promise<any> {
+    const pubs = await this.pubsService.getPubsForAuthor(params.orcId);
+    if (!pubs) throw new NotFoundException();
+    return pubs;
   }
 }

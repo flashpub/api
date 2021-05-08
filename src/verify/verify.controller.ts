@@ -11,9 +11,9 @@ export class VerifyController {
 
   @Get(':userId')
   async IsTokenValid(@Req() request: Request) {
-    const token = await this.appService.CheckToken(
+    const tokenizedUid = await this.appService.CheckToken(
       request.headers['authorization'],
     );
-    return token === 'public' || request.params.userId === token;
+    return tokenizedUid === 'public' || request.params.userId === tokenizedUid;
   }
 }

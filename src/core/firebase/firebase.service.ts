@@ -3,7 +3,7 @@
 import { Injectable } from '@nestjs/common';
 import * as FirebaseAdmin from 'firebase-admin';
 
-const serviceAccount = require('../../../staging.json');
+const serviceAccount = require('../../../dev.json');
 
 @Injectable()
 export class FirebaseService {
