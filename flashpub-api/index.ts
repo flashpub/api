@@ -12,7 +12,7 @@ const createFunction = async (expressInstance): Promise<void> => {
     AppModule,
     new ExpressAdapter(expressInstance),
   );
- 
+  app.enableCors();
   await app.init();
 };
  
